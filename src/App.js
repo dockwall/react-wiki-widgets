@@ -1,7 +1,7 @@
 import React from "react";
 import Accordion from "./components/Accordion";
 
-const items = [
+const mockupItems = [
     {
         title: 'What is React?1',
         content: 'description1',
@@ -17,7 +17,7 @@ const items = [
 ]
 
 const App = () => {
-    return <div><Accordion items={items} /></div>
+    return <div><Accordion items={mockupItems} /></div>
 };
 
 export default App
