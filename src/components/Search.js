@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Search = () => {
     const [searchValue, setSearchValue] = useState('');
+
+    useEffect(() => {
+        console.log('Rerendered')
+    }, [searchValue])
 
     return (
         <div>
