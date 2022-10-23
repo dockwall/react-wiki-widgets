@@ -24,6 +24,20 @@ const Search = () => {
         if (searchValue) sendRequest();
     }, [searchValue])
 
+    // dangerouslySetInnerHTML is a very riskful way to parse response string.
+    // I use it because there is no account system or something else confident in this App.
+
+    const renderedResults = searchResults.map(({ title, snippet, pageid }) => {
+        return (
+            <div key={pageid} className='item'>
+                <div className="content">
+                    <div className="header">{title}</div>
+                    <span dangerouslySetInnerHTML={{ __html: snippet }}></span>
+                </div>
+            </div>
+        )
+    })
+
     return (
         <div>
             <div className="ui form">
@@ -36,6 +50,9 @@ const Search = () => {
                     >
                     </input>
                 </div>
+            </div>
+            <div className="ui celled list">
+                {renderedResults}
             </div>
         </div>
     )
