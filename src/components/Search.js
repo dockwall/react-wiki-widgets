@@ -1,10 +1,27 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Search = () => {
     const [searchValue, setSearchValue] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
 
     useEffect(() => {
-        console.log('Rerendered')
+        const sendRequest = async () => {
+            const { data } = await axios.get('https://ru.wikipedia.org/w/api.php',
+                {
+                    params: {
+                        action: 'query',
+                        list: 'search',
+                        origin: '*',
+                        format: 'json',
+                        srsearch: searchValue,
+                    },
+                })
+
+            setSearchResults(data.query.search);
+        }
+
+        if (searchValue) sendRequest();
     }, [searchValue])
 
     return (
