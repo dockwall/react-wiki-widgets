@@ -21,7 +21,16 @@ const Search = () => {
             setSearchResults(data.query.search);
         }
 
-        if (searchValue) sendRequest();
+        // There is a min time after that request creates (if user no longer writes anything in this time)
+        // Timer can be changed (second argument of setTimeout)
+        // I used useEffect() cleanup function for timer reseting
+
+        const searchTimeoutId = setTimeout(() => {
+            if (searchValue) sendRequest();
+        }, 500)
+
+        return () => clearInterval(searchTimeoutId)
+
     }, [searchValue])
 
     // dangerouslySetInnerHTML is a very riskful way to parse response string.
