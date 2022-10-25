@@ -38,7 +38,11 @@ const App = () => {
         <div>
             {/* <Accordion items={accordionMockupItems} /> */}
             {/* <Search /> */}
-            <Dropdown options={dropdownOptions} />
+            <Dropdown
+                options={dropdownOptions}
+                labelText="Select a Color Scheme"
+                innerText="color"
+            />
         </div>
     )
 };
