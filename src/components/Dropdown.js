@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const Dropdown = (props) => {
     const [isDropdownActive, setIsDropdownActive] = useState(false)
@@ -7,6 +7,18 @@ const Dropdown = (props) => {
         dropdown: 'visible active',
         menu: 'visible transition',
     };
+
+    const dropdownRef = useRef()
+
+    useEffect(() => {
+        document.body.addEventListener('click', (e) => {
+            if (dropdownRef.current.contains(e.target)) {
+                return;
+            }
+
+            setIsDropdownActive(false);
+        }, { capture: true });
+    }, [])
 
     const renderedOptions = props.options.map((option) => {
         if (props.selectedColor.value === option.value) return null;
@@ -23,7 +35,7 @@ const Dropdown = (props) => {
     });
 
     return (
-        <div className="ui form">
+        <div className="ui form" ref={dropdownRef}>
             <div className="field">
                 <label className="label">{props.labelText}</label>
                 <div
