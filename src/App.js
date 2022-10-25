@@ -1,8 +1,9 @@
 import React from "react";
 import Accordion from "./components/Accordion";
 import Search from "./components/Search";
+import Dropdown from "./components/Dropdown";
 
-const mockupItems = [
+const accordionMockupItems = [
     {
         title: 'What is React?1',
         content: 'description1',
@@ -17,11 +18,27 @@ const mockupItems = [
     },
 ]
 
+const dropdownOptions = [
+    {
+        label: 'The Red Color',
+        value: 'red',
+    },
+    {
+        label: 'The Green Color',
+        value: 'green',
+    },
+    {
+        label: 'The Blue Color',
+        value: 'blue',
+    },
+]
+
 const App = () => {
     return (
         <div>
-            {/* <Accordion items={mockupItems} /> */}
-            <Search />
+            {/* <Accordion items={accordionMockupItems} /> */}
+            {/* <Search /> */}
+            <Dropdown options={dropdownOptions} />
         </div>
     )
 };
