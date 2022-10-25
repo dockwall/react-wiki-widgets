@@ -11,13 +11,19 @@ const Dropdown = (props) => {
     const dropdownRef = useRef()
 
     useEffect(() => {
-        document.body.addEventListener('click', (e) => {
+        const onBodyClick = (e) => {
             if (dropdownRef.current.contains(e.target)) {
                 return;
             }
 
             setIsDropdownActive(false);
-        }, { capture: true });
+        }
+
+        document.body.addEventListener('click', onBodyClick, { capture: true });
+
+        return () => {
+            document.body.removeEventListener('click', onBodyClick, { capture: true });
+        }
     }, [])
 
     const renderedOptions = props.options.map((option) => {
