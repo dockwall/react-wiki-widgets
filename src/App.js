@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Accordion from "./components/Accordion";
 import Search from "./components/Search";
 import Dropdown from "./components/Dropdown";
+import Translate from "./components/Translate";
 
 // For Accordion list I use mock object
 const accordionMockupItems = [
@@ -44,12 +45,13 @@ const App = () => {
         <div>
             {/* <Accordion items={accordionMockupItems} /> */}
             {/* <Search /> */}
-            <Dropdown
+            {/* <Dropdown
                 options={dropdownOptions}
                 labelText="Select a Color Scheme"
-                selectedColor={selectedColor}
+                selected={selectedColor}
                 onSelectedChange={setSelectedColor}
-            />
+            /> */}
+            <Translate />
         </div>
     )
 };
