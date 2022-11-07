@@ -50,6 +50,8 @@ const Dropdown = (props) => {
         )
     });
 
+    console.log(props.selectedColor)
+
     // ternary operators to choose current Semantic UI styles
     return (
         <div className="ui form" ref={dropdownRef}>
@@ -64,6 +66,13 @@ const Dropdown = (props) => {
                     <div className={`menu ${isDropdownActive ? activeDropdownStyles.menu : ''}`}>{renderedOptions}</div>
                 </div>
             </div>
+            <h1
+                style={{
+                    textAlign: 'center',
+                    color: props.selectedColor.value,
+                    marginTop: '250px',
+                }}
+            >The color is {props.selectedColor.value}!</h1>
         </div>
     )
 };
