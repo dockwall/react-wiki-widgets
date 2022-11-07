@@ -3,6 +3,7 @@ import Accordion from "./components/Accordion";
 import Search from "./components/Search";
 import Dropdown from "./components/Dropdown";
 
+// For Accordion list I use mock object
 const accordionMockupItems = [
     {
         title: 'What is React?1',
@@ -18,6 +19,7 @@ const accordionMockupItems = [
     },
 ]
 
+// For Dropdown I use config object
 const dropdownOptions = [
     {
         label: 'The Red Color',
@@ -34,6 +36,8 @@ const dropdownOptions = [
 ]
 
 const App = () => {
+    // This state represents active color in Dropdown
+    // By default first color is selected (red)
     const [selectedColor, setSelectedColor] = useState(dropdownOptions[0])
 
     return (

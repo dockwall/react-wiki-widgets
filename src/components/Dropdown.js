@@ -1,16 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
 
 const Dropdown = (props) => {
+    // This state represents Dropdown menu active/unactive visibility
     const [isDropdownActive, setIsDropdownActive] = useState(false)
 
+    // This is a config object with styles for active Dropdonwn
     const activeDropdownStyles = {
         dropdown: 'visible active',
         menu: 'visible transition',
     };
 
+    // This ref belongs to Dropdown most parent div
     const dropdownRef = useRef()
 
+    // This useEffect configured to run only once when component was rendered
     useEffect(() => {
+        // This click handler turns off active Dropdown if user clicks anywhere other than Dropdown
         const onBodyClick = (e) => {
             if (dropdownRef.current.contains(e.target)) {
                 return;
@@ -19,14 +24,19 @@ const Dropdown = (props) => {
             setIsDropdownActive(false);
         }
 
+        // Add handler above to body, configured to intercepts capture stage
         document.body.addEventListener('click', onBodyClick, { capture: true });
 
+        // cleanup function for delete click handler at the body
         return () => {
             document.body.removeEventListener('click', onBodyClick, { capture: true });
         }
     }, [])
 
+
+    // Construct Dropdown color elements from config objects in props
     const renderedOptions = props.options.map((option) => {
+        // Filter selected color in all color options
         if (props.selectedColor.value === option.value) return null;
 
         return (
@@ -40,6 +50,7 @@ const Dropdown = (props) => {
         )
     });
 
+    // ternary operators to choose current Semantic UI styles
     return (
         <div className="ui form" ref={dropdownRef}>
             <div className="field">
