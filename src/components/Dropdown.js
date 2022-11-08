@@ -37,7 +37,7 @@ const Dropdown = (props) => {
     // Construct Dropdown color elements from config objects in props
     const renderedOptions = props.options.map((option) => {
         // Filter selected color in all color options
-        if (props.selectedColor.value === option.value) return null;
+        if (props.selected.value === option.value) return null;
 
         return (
             <div
@@ -50,8 +50,6 @@ const Dropdown = (props) => {
         )
     });
 
-    console.log(props.selectedColor)
-
     // ternary operators to choose current Semantic UI styles
     return (
         <div className="ui form" ref={dropdownRef}>
@@ -62,17 +60,17 @@ const Dropdown = (props) => {
                     onClick={() => setIsDropdownActive(!isDropdownActive)}
                 >
                     <i className="dropdown icon" />
-                    <div className="text">{props.selectedColor.label}</div>
+                    <div className="text">{props.selected.label}</div>
                     <div className={`menu ${isDropdownActive ? activeDropdownStyles.menu : ''}`}>{renderedOptions}</div>
                 </div>
             </div>
-            <h1
+            {/* <h1
                 style={{
                     textAlign: 'center',
-                    color: props.selectedColor.value,
+                    color: props.selected.value,
                     marginTop: '250px',
                 }}
-            >The color is {props.selectedColor.value}!</h1>
+            >The color is {props.selected.value}!</h1> */}
         </div>
     )
 };
