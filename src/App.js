@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Accordion from "./components/Accordion";
 import Search from "./components/Search";
 import Dropdown from "./components/Dropdown";
@@ -38,6 +38,10 @@ const dropdownOptions = [
 ]
 
 const App = () => {
+    // This state represents active color in Dropdown
+    // By default first color is selected (red)
+    const [selectedColor, setSelectedColor] = useState(dropdownOptions[0])
+
     return (
         <div>
             <Route path='/'>
@@ -48,8 +52,10 @@ const App = () => {
             </Route>
             <Route path='/dropdown'>
                 <Dropdown
+                    label="Select a Color Scheme"
                     options={dropdownOptions}
-                    labelText="Select a Color Scheme"
+                    selected={selectedColor}
+                    onSelectedChange={setSelectedColor}
                 />
             </Route>
             <Route path='/translate'>
