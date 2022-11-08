@@ -8,8 +8,6 @@ const Convert = ({ language, text }) => {
 
 
     useEffect(() => {
-        if (!text) return;
-
         const sendRequest = async () => {
             const { data } = await axios.post('https://translation.googleapis.com/language/translate/v2',
                 {}, {
@@ -18,15 +16,18 @@ const Convert = ({ language, text }) => {
                     target: language.value,
                     key: 'AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM',
                 }
-            }
-            )
+            })
 
             setTranslated(data.data.translations[0].translatedText)
         }
 
-        sendRequest()
+        const searchTimeoutId = setTimeout(() => {
+            if (text) sendRequest();
+        }, 500)
 
-
+        return () => {
+            clearTimeout(searchTimeoutId);
+        }
     }, [language, text])
     return (
         <div>

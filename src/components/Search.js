@@ -44,7 +44,7 @@ const Search = () => {
 
         // I use return useEffect() cleanup function for timer reseting
         // If user starts typing rather than one symbol in 500ms, useEffect runs again, cleanup fn resets timer
-        return () => clearInterval(searchTimeoutId)
+        return () => clearTimeout(searchTimeoutId)
 
     }, [searchValue])
 
