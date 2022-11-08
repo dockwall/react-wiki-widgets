@@ -1,6 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 
+// !IN FUTURE
+// This is a component for choosing and changing App color scheme
+// It will use Dropdown as reusable component
+
 const Dropdown = (props) => {
+    // This state represents active color in Dropdown
+    // By default first color is selected (red)
+    const [selectedColor, setSelectedColor] = useState(props.options[0])
+
     // This state represents Dropdown menu active/unactive visibility
     const [isDropdownActive, setIsDropdownActive] = useState(false)
 
@@ -37,13 +45,13 @@ const Dropdown = (props) => {
     // Construct Dropdown color elements from config objects in props
     const renderedOptions = props.options.map((option) => {
         // Filter selected color in all color options
-        if (props.selected.value === option.value) return null;
+        if (selectedColor.value === option.value) return null;
 
         return (
             <div
                 key={option.value}
                 className="item"
-                onClick={() => props.onSelectedChange(option)}
+                onClick={() => setSelectedColor(option)}
             >
                 {option.label}
             </div>
@@ -60,17 +68,17 @@ const Dropdown = (props) => {
                     onClick={() => setIsDropdownActive(!isDropdownActive)}
                 >
                     <i className="dropdown icon" />
-                    <div className="text">{props.selected.label}</div>
+                    <div className="text">{selectedColor.label}</div>
                     <div className={`menu ${isDropdownActive ? activeDropdownStyles.menu : ''}`}>{renderedOptions}</div>
                 </div>
             </div>
-            {/* <h1
+            <h1
                 style={{
                     textAlign: 'center',
-                    color: props.selected.value,
+                    color: selectedColor.value,
                     marginTop: '250px',
                 }}
-            >The color is {props.selected.value}!</h1> */}
+            >The color is {selectedColor.value}!</h1>
         </div>
     )
 };

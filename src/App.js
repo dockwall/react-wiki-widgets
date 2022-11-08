@@ -49,16 +49,11 @@ const showSearch = () => {
 };
 
 const showDropdown = () => {
-    // This state represents active color in Dropdown
-    // By default first color is selected (red)
-    const [selectedColor, setSelectedColor] = useState(dropdownOptions[0])
     if (window.location.pathname === '/dropdown') {
         return (
             <Dropdown
                 options={dropdownOptions}
                 labelText="Select a Color Scheme"
-                selected={selectedColor}
-                onSelectedChange={setSelectedColor}
             />
         )
     }

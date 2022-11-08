@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+// !IN FUTURE
 // This is a component for render Accordion list with general information about this App
 
 const Accordion = (props) => {
