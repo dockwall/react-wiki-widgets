@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Dropdown from "./Dropdown";
 import Convert from "./Convert";
 
+// Config object for translate languages. It can be expanded
+
 const translateOptions = [
     {
         label: 'Afrikaans',
@@ -14,11 +16,18 @@ const translateOptions = [
     {
         label: 'Hindi',
         value: 'hi'
+    },
+    {
+        label: 'Russian',
+        value: 'ru'
     }
 ];
 
 const Translate = () => {
+    // This state represents selected language to translate
     const [selectedLanguage, setSelectedLanguage] = useState(translateOptions[0]);
+    // this state represents text typing by user
+    // !NOTE - there is debounce fn for text in Convert component
     const [translateText, setTranslateText] = useState('')
 
     // Google API key has a one restriction - it works correctly only if host is local and port is 3000
