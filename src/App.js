@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Accordion from "./components/Accordion";
 import Search from "./components/Search";
 import Dropdown from "./components/Dropdown";
 import Translate from "./components/Translate";
+import Route from "./components/Route";
 
 // For Accordion list I use mock object
 const accordionMockupItems = [
@@ -36,42 +37,24 @@ const dropdownOptions = [
     },
 ]
 
-const showAccordion = () => {
-    if (window.location.pathname === '/') {
-        return <Accordion items={accordionMockupItems} />
-    }
-};
-
-const showSearch = () => {
-    if (window.location.pathname === '/search') {
-        return <Search />
-    }
-};
-
-const showDropdown = () => {
-    if (window.location.pathname === '/dropdown') {
-        return (
-            <Dropdown
-                options={dropdownOptions}
-                labelText="Select a Color Scheme"
-            />
-        )
-    }
-};
-
-const showTranslate = () => {
-    if (window.location.pathname === '/translate') {
-        return <Translate />
-    }
-};
-
 const App = () => {
     return (
         <div>
-            {showAccordion()}
-            {showSearch()}
-            {showDropdown()}
-            {showTranslate()}
+            <Route path='/'>
+                <Accordion items={accordionMockupItems} />
+            </Route>
+            <Route path='/search'>
+                <Search />
+            </Route>
+            <Route path='/dropdown'>
+                <Dropdown
+                    options={dropdownOptions}
+                    labelText="Select a Color Scheme"
+                />
+            </Route>
+            <Route path='/translate'>
+                <Translate />
+            </Route>
         </div>
     )
 };
