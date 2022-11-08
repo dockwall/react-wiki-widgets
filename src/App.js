@@ -36,22 +36,47 @@ const dropdownOptions = [
     },
 ]
 
-const App = () => {
+const showAccordion = () => {
+    if (window.location.pathname === '/') {
+        return <Accordion items={accordionMockupItems} />
+    }
+};
+
+const showSearch = () => {
+    if (window.location.pathname === '/search') {
+        return <Search />
+    }
+};
+
+const showDropdown = () => {
     // This state represents active color in Dropdown
     // By default first color is selected (red)
     const [selectedColor, setSelectedColor] = useState(dropdownOptions[0])
-
-    return (
-        <div>
-            {/* <Accordion items={accordionMockupItems} /> */}
-            {/* <Search /> */}
-            {/* <Dropdown
+    if (window.location.pathname === '/dropdown') {
+        return (
+            <Dropdown
                 options={dropdownOptions}
                 labelText="Select a Color Scheme"
                 selected={selectedColor}
                 onSelectedChange={setSelectedColor}
-            /> */}
-            <Translate />
+            />
+        )
+    }
+};
+
+const showTranslate = () => {
+    if (window.location.pathname === '/translate') {
+        return <Translate />
+    }
+};
+
+const App = () => {
+    return (
+        <div>
+            {showAccordion()}
+            {showSearch()}
+            {showDropdown()}
+            {showTranslate()}
         </div>
     )
 };

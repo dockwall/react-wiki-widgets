@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-// This is a component for render Accordion list
+// This is a component for render Accordion list with general information about this App
 
 const Accordion = (props) => {
     // This state represents active element of Accordion list
