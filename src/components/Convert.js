@@ -4,7 +4,18 @@ import axios from "axios";
 // API key in axios works only at the localhost:3000
 
 const Convert = ({ language, text }) => {
-    const [translated, setTranslated] = useState('')
+    const [translated, setTranslated] = useState('');
+    const [debouncedText, setDebouncedText] = useState(text);
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            if (text) setDebouncedText(text);
+        }, 500)
+
+        return () => {
+            clearTimeout(timeoutId);
+        }
+    }, [text])
 
 
     useEffect(() => {
@@ -12,7 +23,7 @@ const Convert = ({ language, text }) => {
             const { data } = await axios.post('https://translation.googleapis.com/language/translate/v2',
                 {}, {
                 params: {
-                    q: text,
+                    q: debouncedText,
                     target: language.value,
                     key: 'AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM',
                 }
@@ -21,14 +32,10 @@ const Convert = ({ language, text }) => {
             setTranslated(data.data.translations[0].translatedText)
         }
 
-        const searchTimeoutId = setTimeout(() => {
-            if (text) sendRequest();
-        }, 500)
+        sendRequest()
 
-        return () => {
-            clearTimeout(searchTimeoutId);
-        }
-    }, [language, text])
+
+    }, [language, debouncedText])
     return (
         <div>
             <h3 className="ui header">{translated}</h3>
