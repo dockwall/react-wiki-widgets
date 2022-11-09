@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Header from "./components/Header";
 import Accordion from "./components/Accordion";
 import Search from "./components/Search";
 import Dropdown from "./components/Dropdown";
@@ -44,6 +45,7 @@ const App = () => {
 
     return (
         <div>
+            <Header />
             <Route path='/'>
                 <Accordion items={accordionMockupItems} />
             </Route>
