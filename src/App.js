@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import Header from "./components/Header";
 import Accordion from "./components/Accordion";
 import Search from "./components/Search";
 import Dropdown from "./components/Dropdown";
 import Translate from "./components/Translate";
+import Route from "./components/Route";
 
 // For Accordion list I use mock object
 const accordionMockupItems = [
@@ -39,19 +41,34 @@ const dropdownOptions = [
 const App = () => {
     // This state represents active color in Dropdown
     // By default first color is selected (red)
+    // !IN FUTURE
+    // There is a component that allows user to choose and change color scheme 
     const [selectedColor, setSelectedColor] = useState(dropdownOptions[0])
 
+    // I created native routing without react-router
+    // There are Header with nav menu - it doesn't rerender
+    // Route components for all other components
+    // There are 'path' and Component as child for each Route
     return (
         <div>
-            {/* <Accordion items={accordionMockupItems} /> */}
-            {/* <Search /> */}
-            {/* <Dropdown
-                options={dropdownOptions}
-                labelText="Select a Color Scheme"
-                selected={selectedColor}
-                onSelectedChange={setSelectedColor}
-            /> */}
-            <Translate />
+            <Header />
+            <Route path='/'>
+                <Accordion items={accordionMockupItems} />
+            </Route>
+            <Route path='/search'>
+                <Search />
+            </Route>
+            <Route path='/dropdown'>
+                <Dropdown
+                    label="Select a Color Scheme"
+                    options={dropdownOptions}
+                    selected={selectedColor}
+                    onSelectedChange={setSelectedColor}
+                />
+            </Route>
+            <Route path='/translate'>
+                <Translate />
+            </Route>
         </div>
     )
 };

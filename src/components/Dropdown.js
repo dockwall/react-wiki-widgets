@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const Dropdown = (props) => {
+// !IN FUTURE
+// There is a component for choosing and changing App color scheme
+// It will use Dropdown as reusable component
+
+const Dropdown = ({ label, options, selected, onSelectedChange }) => {
     // This state represents Dropdown menu active/unactive visibility
     const [isDropdownActive, setIsDropdownActive] = useState(false)
 
@@ -35,15 +39,15 @@ const Dropdown = (props) => {
 
 
     // Construct Dropdown color elements from config objects in props
-    const renderedOptions = props.options.map((option) => {
+    const renderedOptions = options.map((option) => {
         // Filter selected color in all color options
-        if (props.selected.value === option.value) return null;
+        if (selected.value === option.value) return null;
 
         return (
             <div
                 key={option.value}
                 className="item"
-                onClick={() => props.onSelectedChange(option)}
+                onClick={() => onSelectedChange(option)}
             >
                 {option.label}
             </div>
@@ -54,23 +58,23 @@ const Dropdown = (props) => {
     return (
         <div className="ui form" ref={dropdownRef}>
             <div className="field">
-                <label className="label">{props.labelText}</label>
+                <label className="label">{label}</label>
                 <div
                     className={`ui selection dropdown ${isDropdownActive ? activeDropdownStyles.dropdown : ''}`}
                     onClick={() => setIsDropdownActive(!isDropdownActive)}
                 >
                     <i className="dropdown icon" />
-                    <div className="text">{props.selected.label}</div>
+                    <div className="text">{selected.label}</div>
                     <div className={`menu ${isDropdownActive ? activeDropdownStyles.menu : ''}`}>{renderedOptions}</div>
                 </div>
             </div>
             {/* <h1
                 style={{
                     textAlign: 'center',
-                    color: props.selected.value,
+                    color: selected.value,
                     marginTop: '250px',
                 }}
-            >The color is {props.selected.value}!</h1> */}
+            >The color is {selected.value}!</h1> */}
         </div>
     )
 };
