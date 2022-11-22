@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
-// API key in axios works only at the localhost:3000
+import config from "../api/config";
 
 const Convert = ({ language, text }) => {
     // This state represents text from Google API response
@@ -32,7 +31,8 @@ const Convert = ({ language, text }) => {
                 params: {
                     q: debouncedText,
                     target: language.value,
-                    key: 'AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM',
+                    key: config.googleKey
+                    // See comments in config.js
                 }
             })
 
